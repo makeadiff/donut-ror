@@ -34,7 +34,7 @@ class NationaltallyreportsController < ApplicationController
     filename = "nationaltally_report_from_"+session[:from_date_range_national_tally].to_s+"_to_"+session[:to_date_range_national_tally].to_s+".xls"
     @report_donations = Donation.joins(:donour).joins('inner join users as users on users.id = donations.fundraiser_id').
              joins('inner join cities as cities on cities.id = users.city_id').
-            where("(donations.donation_status = 'RECEIPT SENT' OR donations.donation_status = 'DEPOSIT COMPLETE') AND donations.created_at >= ? AND donations.created_at <= ?",  
+            where("(donations.donation_status = 'RECEIPT SENT' OR donations.donation_status = 'DEPOSIT COMPLETE') AND donations.updated_at >= ? AND donations.updated_at <= ?",  
            session[:from_date_range_national_tally].to_s+" "+$start_time, session[:to_date_range_national_tally].to_s+" "+$end_time)
 
     respond_to do |format|
