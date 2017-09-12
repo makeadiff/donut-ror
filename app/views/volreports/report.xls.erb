@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.date %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.donor_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.email_id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.phone_no %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.amount_donated %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.receipt_status %></Data></Cell>
+      </Row>
+    <% @report_donations.each do |donation| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= donation.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donour_user.first_name.to_s + ' ' + donation.donour_user.last_name.to_s %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donour_user.email_id.to_s %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donour_user.phone_no %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donation_amount %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donation_status.to_s %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+

@@ -1,0 +1,64 @@
+<h1>Event Details</h1>
+<p id="notice"><%= notice %></p>
+
+
+<div class="show-page">
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col3">Event Name</label>
+            <span class="col8"><%= @event.event_name %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col3">Description</label>
+            <span class="col8"><%= @event.description %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col3">Ticket Price</label>
+            <span class="col8"><%= @event.ticket_price %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col3">Date Range From</label>
+            <span class="col8"><%= @event.date_range_from %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col3">Date Range To</label>
+            <span class="col8"><%= @event.date_range_to %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col3">Venue Address</label>
+            <span class="col8"><%= @event.venue_address %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col3">City</label>
+            <span class="col8"><%= @event.city_name %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col3">Region</label>
+            <span class="col8"><%= @event.state_name %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col3">Image URL</label>
+            <span class="col8"><%= image_tag @event.image_url.to_s, :size => "150x150" %></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="link-button clearfix extra-margin-top-2x"><%= link_to 'Edit', edit_event_path(@event) %></div>
+<div class="link-button clearfix extra-margin-top-2x"><%= link_to 'Back', events_path %></div>

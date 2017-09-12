@@ -1,0 +1,57 @@
+<%= javascript_include_tag 'application' %>
+<script>
+    $(document).ready(function() {
+        $(".eighty_g_approval").on('ajax:success', function (e, xhr) {
+        	$('#form_id_'+ xhr).next('tr').find('#send_button').replaceWith('<label>Sent</label>');
+        	$('#form_id_'+ xhr).next('tr').find('.donation_status').replaceWith('<label>RECEIPT SENT</label>');
+        });
+    });
+</script>
+<h1>Eighty-G-Approval</h1>
+<%= form_tag('/eighty_g_approval/show', :method => 'get') do %>  
+  <p>  
+    <%= text_field_tag :search, params[:search] %>  
+    <%= submit_tag "Search", :name => nil %>  
+  </p>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th><%= sortable "Donation Id" %></th>
+      <th><%= sortable MadConstants.donor_name %></th>
+      <th><%= sortable MadConstants.email_id %></scopedth>
+      <th><%= sortable MadConstants.phone_no %></th>
+      <th><%= sortable MadConstants.donation_amount %></th>
+      <th><%= sortable "Donation Date" %></th>
+      <th><%= sortable "Approve" %></th>
+      <th><%= sortable "Status" %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td><span id="send_button"><%= 
+        form_tag('/eighty_g_approval/show', :method => 'get') do 
+          submit_tag('Send All')
+        end
+        %></span></td></tr>
+    <% @donations.each do |donation| %>
+    <%= form_tag({:approver_id => session[:session_user_id].to_s, :donation_id => donation.id.to_s},method: 'put' , :remote => true, :class => 'eighty_g_approval', :id => 'form_id_' + donation.id.to_s) do%>
+      <tr>
+        <td><%= donation.id %></td>
+        <td><%= donation.donour_user.first_name + ' ' + donation.donour_user.last_name %></td>
+        <td><%= donation.donour_user.email_id%></td>
+        <td><%= donation.donour_user.phone_no%></td>
+        <td><%= donation.donation_amount %></td>
+        <td><%= donation.created_at%></td>        
+	    <% if donation.donation_status == Donation.STATUS_EIGHTY_G_RECEIPT_PENDING %>
+	    	<td><span id="send_button"><%= submit_tag('Send' )%></span></td>
+	    <% else %>
+	       	<td><span id="sent_link">Sent</span></td>
+	    <%end%>
+        <td><span class="donation_status"><%= donation.donation_status%></span></td>
+      </tr>
+      <%end%>
+    <% end %>
+  </tbody>
+</table>
+ <%= will_paginate @donations %>

@@ -1,0 +1,666 @@
+.clearfix:after {
+ content: ".";
+ display: block;
+ clear: both;
+ visibility: hidden;
+ line-height: 0;
+ height: 0;
+}
+
+.clearfix {
+ display: inline-block;
+}
+
+html[xmlns] .clearfix {
+ display: block;
+}
+
+* html .clearfix {
+ height: 1%;
+}
+table{
+ margin-bottom:15px;
+ border:1px solid #000000;
+}
+table thead tr {
+   border: 1px solid #333231;
+   background-color: #333231;
+   color: #fff;
+   line-height: 25px;
+}
+table tbody td a:visited{
+   color: #000;
+}
+table tbody td a:hover{
+   background: none;
+   color:#000;
+}
+table thead th a{
+   color: #fff;
+   line-height: 25px;
+   &:visited
+   {
+      color:#fff;
+   }
+}
+table tbody tr:nth-child(2n) {
+   background-color: #e8e6e6;
+}
+table th, table td {
+   padding: 3px 10px;
+}
+table thead th {
+   text-align: left;
+}
+tr.selected td {
+     background-color:#ddd;
+}
+.highlight{
+    background-color: red;
+}
+select
+{
+    width:100%;
+}
+.number-column {
+   text-align: right;
+}
+.align-center
+{
+    text-align: center;
+}
+.link-button {
+   a{
+     padding:3px 10px;
+     font-weight:bold;
+     font-size:14px;
+     text-decoration:none;
+     background-color:#333231;
+     margin:10px 0 10px;
+     display:inline;
+     color: #ffffff;
+     &:visited
+     {
+       color:#ffffff;
+     }
+     &:hover
+     {
+       text-decoration:underline;
+     }
+   }
+} 
+#flash_error{
+  background-color: #CFDBC5;
+  color: #F00000;
+  size: #25; 
+}
+
+#flash_alert{
+  background-color: #CFDBC5;
+  color: #000000;
+  size: #25; 
+}
+.field {
+    display: table;
+    width: 82%;
+}
+.field > span {
+    display: table-cell;
+    width: 25%;
+    padding-right: 25px;
+}
+.field span label {
+    float: left;
+    padding-top: 4px;
+}
+.field span input {
+    float: right;
+}
+.field span select {
+    float: right;
+    width: 185px;
+}
+.actions input
+{
+    background: none repeat scroll 0 0 #333231;
+    border: medium none;
+    font-weight:bold;
+    color: #FFFFFF;
+    padding: 3px 8px;
+    margin-top:10px;
+}
+.back-button
+{
+    display:none;
+}
+.show-page label
+{
+  font-weight:bold;
+}
+.show-page {
+    font-size: 15px;
+}
+
+#accordion, #accordion2
+{
+ width:800px;
+}
+#accordion1
+{
+    display:none;
+}
+#accordion .ui-accordion-header, #accordion2 .ui-accordion-header
+{
+    background-color: #333231;
+    border: 1px solid #333231;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 21px;
+    padding: 2px 5px 2px 25px;
+}
+.approve-all-button {
+    position:relative;
+}
+.donation-table,.cfc-table
+{
+    margin-bottom: 0px;
+}
+.donation-table-paginator {
+    background-color: #333231;
+    color: #000000;
+    border: none;
+    border-top: none;
+    padding: 8px 2px;
+    width: 796px;
+    margin-bottom:10px;
+}
+.donation-table-paginator .pagination {
+    display: table;
+    margin: 0 auto;
+}
+
+.donation-table-paginator .page.current {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 12px 12px 12px 12px;
+    margin-right: 10px;
+    padding: 2px 5px 2px 5px;
+    color: #000000;
+}
+.donation-table-paginator .prev a,.donation-table-paginator .first a,.donation-table-paginator .next a,.donation-table-paginator .last a,.donation-table-paginator .page a
+{
+    color: #ffffff;
+}
+.donation-info
+{
+    display: table-row;
+}
+.donation-info label, .donation-info .approve-button
+{
+    display: table-cell;
+}
+.donation-table .ui-accordion-header label
+{
+    margin-left:41%;
+}
+.approve_donation
+{
+    border-collapse: separate;
+    border-spacing: 10px 0;
+    display: table;
+}
+.individual-donation-table
+{
+    float: left;
+    border:none;
+    margin-bottom: 0px;
+}
+.ui-accordion-header{
+    background: url('/assets/arrow_right.png') no-repeat 4px center transparent;
+}
+.ui-accordion-header-active {
+    background: url('/assets/arrow_down.png') no-repeat 4px center transparent;
+}
+.ui-accordion-header span {
+    margin-left:10px;
+}
+.event-donation-approval-table #accordion, .event-donation-approval-table #accordion2{
+    width: 920px;
+    .ui-accordion-header label
+    {
+        margin-right:46%;
+    }
+}
+.event-donation-approval-table-paginator {
+    background-color: #333231;
+    color: #000000;
+    margin-bottom: 20px;
+    padding: 8px 0;
+    width: 940px;
+    border: 1px solid #000000;
+    border-top: none;
+}
+.event-donation-approval-table-paginator .pagination {
+    display: table;
+    margin: 0 auto;
+}
+
+.event-donation-approval-table-paginator .page.current {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 12px 12px 12px 12px;
+    margin-right: 10px;
+    padding: 2px 5px 2px 5px;
+    color: #000000;
+}
+.event-donation-approval-table-paginator .prev a,.event-donation-approval-table-paginator .first a,.event-donation-approval-table-paginator .next a,.event-donation-approval-table-paginator .last a,.event-donation-approval-table-paginator .page a
+{
+    color: #ffffff;
+}
+.event-donation-approval-table
+{
+    margin-bottom:0px;
+}
+
+.will-paginate {
+    background: #333231;
+    padding: 5px 0px;
+}
+
+.will-paginate .pagination .current {
+    background: #fff;
+    color: #000;
+    border-radius: 15px;
+    padding: 0px 5px;
+}
+.pagination {
+    text-align: center;
+}
+.users .pagination a {
+    color: #fff;
+}
+.pagination-row td
+{
+    padding:0px;
+}
+.pagination .disabled
+{
+    color:#a1a1a1;
+}
+.read-only-box label {
+    background: none repeat scroll 0 0 #333231;
+    padding: 2px 0 2px 5px;
+    color: #fff;
+}
+.show-page .row {
+    margin-bottom: 5px;
+}
+.read-only-box span {
+    padding: 2px 5px;
+    background: #e6e6e6;
+}
+.row {
+    margin-bottom: 5px;
+}
+form .row label,.free_pool .row label {
+    line-height: 24px;
+}
+.new_cfr_product select,.edit_cfr_product select,.events select
+{
+    width:auto;
+}
+.cfr-select-product select,.state-select select,.city-select select,.multiple-select select
+{
+    width:100%;
+}
+.assign_user table tbody tr td:nth-child(1) {
+    width: 110px;
+}
+.assign_user table tbody tr td:nth-child(5) {
+    width: 70px;
+}
+.assign_user table tbody tr td:nth-child(4) {
+    width: 140px;
+}
+.assign_user table tbody tr td:nth-child(3) {
+    width: 170px;
+}
+.assign_user table tbody tr td:nth-child(2) {
+    width: 80px;
+}
+.assign_user table
+{
+    margin-bottom:5px;
+}
+
+/* media queries for mobile devices starts */
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+.login-box-wrapper{
+    float: left;
+    margin-top: 25%;
+}
+.body-container,.header,.footer
+{
+    width:100%;
+}
+.navbar ul
+{
+    padding:50px 0 0 0;
+}
+.logo-link
+{
+    background: url("/assets/madLogo-mobile.png") no-repeat scroll left top transparent;
+    float: left;
+    height: 30px;
+    width: 60px;
+    margin-top:40px;
+}
+.navbar
+{
+    position:relative;
+}
+.navbar .signed-in-username {
+    position:absolute;
+    left:0px;
+}
+.nav-links li a
+{
+    padding: 4px 5px;
+    border-radius:5px 5px 0 0;
+}
+.signed-in-username,.home-signed-in-username {
+    color: #FFFFFF;
+    float: left;
+    padding: 4px 0 0 0;
+}
+.signed-in-username li a:visited,.home-signed-in-username li a:visited {
+    color: #FFFFFF;
+}
+.home-heading,.mobile-heading
+{
+    font-size: 12px;
+}
+.region-column,.txn-id-column{
+    display:none;
+}
+.donation-table-paginator-row
+{
+    display:none;
+}
+.donation-table
+{
+    width:100%;
+}
+#accordion1 {
+    width: 320px;
+}
+.donation-table-paginator
+{
+    display:none;
+}
+.ui-accordion-header
+{
+    font-size:10px;
+}
+.individual-donation-list-wrapper li
+{
+    display:block;
+}
+.events_donation_approvals h2
+{
+    font-size:14px;
+}
+.donation-table
+{
+    display:none;
+}
+#accordion1
+{
+    display:block;
+}
+#accordion1 .ui-accordion-header 
+{
+    background-color: #333231;
+    border: 1px solid #333231;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 21px;
+    padding: 2px 5px 2px 25px;
+}
+}
+
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+.body-container,.header,.footer
+{
+    width:100%;
+}
+.navbar ul
+{
+    padding:53px 0 0 0;
+}
+.navbar
+{
+    position:relative;
+}
+.home-heading,.mobile-heading
+{
+    font-size: 12px;
+}
+.logo-link
+{
+    background: url("/assets/madLogo-mobile.png") no-repeat scroll left top transparent;
+    float: left;
+    height: 30px;
+    width: 60px;
+    margin-top:40px;
+}
+.navbar .signed-in-username {
+    position:absolute;
+ }
+.nav-links li a
+{
+    padding: 4px 5px;
+    border-radius:5px 5px 0 0;
+}
+.signed-in-username,.home-signed-in-username{
+    color: #FFFFFF;
+    float: left;
+    padding: 4px 0 0 0;
+}
+.region-column,.txn-id-column{
+    display:none;
+}
+.donation-table-paginator-row
+{
+    display:none;
+}
+.donation-table
+{
+    width:100%;
+}
+#accordion1 {
+    width: 320px;
+}
+.donation-table-paginator
+{
+    display:none;
+}
+.ui-accordion-header
+{
+    font-size:10px;
+}
+.individual-donation-list-wrapper li
+{
+    display:block;
+}
+.events_donation_approvals h2
+{
+    font-size:14px;
+}
+.donation-table
+{
+    display:none;
+}
+#accordion1
+{
+    display:block;
+}
+#accordion1 .ui-accordion-header 
+{
+    background-color: #333231;
+    border: 1px solid #333231;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 21px;
+    padding: 2px 5px 2px 25px;
+}
+}
+/* media queries for mobile devices ends */
+
+
+.ui-datepicker-prev-hover{
+     background: url('/assets/date-prev.png') no-repeat 4px center transparent !important;
+    border: 1px solid #333231;
+}
+.ui-datepicker-next-hover {
+     background: url('/assets/date-next.png') no-repeat 4px center transparent !important;
+    border: 1px solid #333231;
+}
+.ui-datepicker-prev{
+    background: url('/assets/date-prev.png') no-repeat 4px center transparent;
+}
+.ui-datepicker-next{
+    background: url('/assets/date-next.png') no-repeat 4px center transparent;
+}
+#datepickerFrom input,#datepickerTo input
+{
+    background: url("/assets/calendar.png") no-repeat scroll right center transparent;
+    border: 1px solid #A1A1A1;
+    border-radius: 4px;
+    height: 20px;
+    padding: 0 0 0 2px;
+}
+.ui-accordion-content
+{
+    padding:0px 10px 0px 10px !important;
+    border-radius:0px;
+}
+.individual-donation-list
+{
+    padding: 0 0 0 10px;
+    margin:0 0 10px 0;
+    list-style-type:none;
+}
+.individual-donation-list li span
+{
+    font-weight:bold;
+    margin-right:2px;
+}
+.individual-donation-list-wrapper
+{
+    margin:0px;
+    padding:0px;
+    list-style-type:none;
+}
+span#datepicker_from,span#datepicker_to
+{
+  border:none;
+}
+.individual-donation-list-wrapper li
+{
+    display:inline-block;
+}
+.events_donation_approvals #accordion, .events_donation_approvals #accordion2
+{
+    width:920px;
+}
+.events_donation_approvals .donation-table-paginator
+{
+    width:938px;
+}
+.donation_approval .donation-table-paginator
+{
+    width:818px;
+}
+.cfr_products #flash_notice
+{
+    display:none;
+}
+#volunteer_div .multiple-select select
+{
+    height:230px;
+}
+.field_with_errors
+{
+    display: block;
+    background:none;
+    padding: 0px;
+    margin: 0px;
+}
+.field_with_errors input, .field_with_errors select,.field_with_errors textarea
+{
+    border: 1px solid #ff0000 !important;
+    border-radius: 4px;
+}
+.field_with_errors input
+{
+    margin-left: 4px;
+}
+#error_explanation ul
+{
+    display: table-cell;
+}
+#report-heading
+{
+    margin-left:20%;
+    font-weight:bold;
+    font-size: 16px;
+}
+.report-header
+{
+    width:80%;
+}
+.show-help-link
+{
+    float: right;
+    cursor: pointer;
+}
+.hide
+{
+    display:none;
+}
+.full-width
+{
+    width:100%;
+}
+.ui-widget-overlay {
+    background: url("/assets/overlay.gif") repeat scroll 0 0 transparent;
+    opacity: 0.5;
+}
+.ui-dialog-titlebar-close.ui-corner-all {
+    background: url("/assets/close.gif") no-repeat scroll 0 0 transparent;
+    float: right;
+}
+.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix {
+    background: none repeat scroll 0 0 #333231;
+    color: #FFFFFF;
+    font-size: 19px;
+    padding: 5px;
+}
+.status-help-panel{
+    border: medium none;
+    padding: 10px 10px 0;
+}
+
+.ui-dialog
+{
+  z-index: 1002;
+}

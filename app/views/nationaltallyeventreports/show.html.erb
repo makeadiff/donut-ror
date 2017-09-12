@@ -1,0 +1,19 @@
+
+<h1>Reports</h1>
+    
+<%= form_tag('/nationaltallyeventreports/show', :method => 'get') do |f|%>  
+  <p>  
+  	<strong>From Date:</strong>
+  	    <span id="datepickerFrom"><%= text_field :from_date, :id => "datepicker_from", :class => "datepicker_from"%></span> 
+    
+    <strong>TO Date:</strong>
+  	    <span id="datepickerTo"><%= text_field :to_date, :id => "datepicker_to", :class => "datepicker_to"%></span> 
+    
+    <%= submit_tag "Submit", :name => nil %>  
+  </p>
+  <div class="report-buttons">
+    <div class="link-button clearfix report-header"><%= link_to "Export to Excel", :controller => :nationaltallyeventreports, :action => :report, :format => 'xls' %><%= label  :report_msg , @report_message, :id => "report-heading"%></div>
+    <%= render "layouts/status" %>
+  </div>
+<% end %>
+

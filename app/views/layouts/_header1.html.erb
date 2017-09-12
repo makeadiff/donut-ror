@@ -1,0 +1,15 @@
+<%= javascript_include_tag "uservoice" %>
+<div class="header">
+  <header class="navbar">
+    <a href="/homes" class="logo-link"></a>
+    
+    <% if user_signed_in? %>
+	  <ul class="home-signed-in-username">
+	  	<li><%= 'Welcome, '+session[:session_user_name] %>
+      	<%= link_to "Logout", destroy_user_session_path, :id => "home-logout-link" %></li>
+      	<li class="change-password-link"><%= link_to "Edit Profile", '/users/' + session[:session_user].to_s + '/edit' %></li>
+      	<!-- <li class="change-password-link"><a href="">Change Password</a></li> -->
+  	  </ul>
+    <% end %>
+  </header>
+</div>

@@ -1,0 +1,61 @@
+
+<h1>Reports</h1>
+<%= form_tag('/nationalfinancereports/show', :method => 'get') do |f|%>  
+  <p>  
+    <strong>From Date:</strong>
+  	    <span id="datepickerFrom"><%= text_field :from_date, :id => "datepicker_from", :class => "datepicker_from"%></span> 
+    
+    <strong>TO Date:</strong>
+  	    <span id="datepickerTo"><%= text_field :to_date, :id => "datepicker_to", :class => "datepicker_to"%></span> 
+    
+    <%= submit_tag "Submit", :name => nil %>  
+  </p> 
+  <div class="report-buttons">
+    <div class="link-button clearfix report-header"><%= link_to "Export to Excel", :controller => :nationalfinancereports, :action => :report, :format => 'xls' %><%= label  :report_msg , @report_message, :id => "report-heading"%></div>
+    <%= render "layouts/status" %>
+  </div>
+<% end %>
+
+<% if @donations %>
+<table class="full-width">
+  <thead>
+    <tr>
+       <th>ID</th>
+      <th><%= sortable MadConstants.date %></th>
+      <th><%= sortable MadConstants.fundraiser_name %></th>
+      <th><%= sortable MadConstants.poc_name %></th>
+      <th><%= sortable MadConstants.city %></th>
+      <th><%= sortable MadConstants.donor_name %></th>
+      <th><%= sortable MadConstants.phone_no %></th>
+      <th><%= sortable MadConstants.eighty_g_required %></th>
+      <th><%= sortable MadConstants.amount_donated %></th>
+      <th><%= sortable MadConstants.receipt_status %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @donations.each do |donation| %>
+      <tr>
+        <td><%= donation.id %></td>
+        <td><%= donation.created_at.to_formatted_s(:long) %></td>
+        <td><a href="mailto:<%= donation.fundraiser_user.email %>"><%= donation.fundraiser_user.first_name.to_s + ' ' + donation.fundraiser_user.last_name.to_s %></a></td>
+        <% if donation.poc_user then %>
+          <td><a href='mailto: <%= donation.poc_user.email %>'><%= donation.poc_user.first_name.to_s + ' ' + donation.poc_user.last_name.to_s %></a></td>
+        <% else %>
+          <td>&nbsp;</td>
+        <% end %> 
+        <td><%= donation.fundraiser_user.city.name.to_s %></td>
+        <td><a href="mailto: <%= donation.donour_user.email_id.to_s %>"><%= donation.donour_user.first_name.to_s + ' ' + donation.donour_user.last_name.to_s %></a></td>
+        <td><%= donation.donour_user.phone_no %></td>
+        <td><%= donation.eighty_g_required %></td>
+        <td class="number-column"><%= donation.donation_amount %></td>
+        <td><%= donation.donation_status.to_s %></td>
+      </tr>
+    <% end %>
+    <tr class="pagination-row">
+        <td colspan="10"><div class="will-paginate"><%= will_paginate @donations %></div></td>
+    </tr>
+  </tbody>
+</table>
+
+<% end %>

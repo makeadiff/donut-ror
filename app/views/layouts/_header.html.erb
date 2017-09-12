@@ -1,0 +1,55 @@
+<%= javascript_include_tag "uservoice" %>
+<div class="header">
+  <header class="navbar">
+    <a href="/homes" class="logo-link"></a>
+    <ul class="nav-links">
+      <% session[:roles].each do |role|
+    	if role.role != "Volunteer"
+  		%>
+          <li class="users"><%= link_to "Users",    '/users' %></li>
+      	<% end %>
+      	<% break if role.role != "Volunteer" %>
+  	  <% end %>
+         
+      <%  if User.has_role Role.ADMINISTRATOR,session[:roles] %>
+          <!--<li class="states"><%= link_to "Regions",    '/states' %></li>-->
+          <li class="cfr-products"><%= link_to "CFR Products",'/cfr_products' %></li>
+          <li class="poc-transactions"><%= link_to "CFR Transactions", '/cfrtransactions' %></li>
+          <!--<li class="cities"><%= link_to "Cities", '/cities' %></li>-->
+          <li class="events"><%= link_to "Events", '/events' %></li>
+         <li class="freepool-link"><%= link_to 'Free Pool', MadConstants.free_pool_path %></li>
+      <%
+         else%>
+          <% if  User.has_role_from CfrProductsController.permitted_roles,session[:roles] %>
+              <li class="cfr-products"><%= link_to "CFR Products",'/cfr_products' %></li>
+              <li class="poc-transactions"><%= link_to "CFR Transactions", '/cfrtransactions' %></li>
+          <%end%>
+          <% if User.has_role_from EventsController.permitted_roles,session[:roles] %>
+              <li class="events"><%= link_to "Events", '/events' %></li>
+          <%end%>
+          <% if User.has_role_from DonationApprovalController.permitted_roles,session[:roles] %>
+              <li class="donation_approval"><%= link_to 'Donation Approvals', MadConstants.donation_approval_path %></li>
+          <%end%>
+          <% if User.has_role_from EventsDonationApprovalsController.permitted_roles,session[:roles] %>
+              <li class="event_approvals"><%= link_to 'Event Approvals', MadConstants.events_donation_approval_path %></li>
+          <%end%>
+          <% if User.has_role_from VolreportsController.permitted_roles,session[:roles] %>
+		      <li class="volreports-link"><%= link_to 'Vol Reports', MadConstants.vol_reports_path %></li>
+		      <%end%>
+    		  <% if User.has_role_from FreePoolController.permitted_roles,session[:roles] %>
+    		      <li class="freepool-link"><%= link_to 'Free Pool', MadConstants.free_pool_path %></li>
+    		  <%end%>
+    		  <% if User.has_role_from EightyGApprovalController.permitted_roles,session[:roles] %>
+    		      <li class="freepool-link"><%= link_to '80g Approvals', MadConstants.eighty_g_approval_path %></li>
+    		  <%end%>
+      <%end%>
+      </ul>
+      <% if user_signed_in? %>
+      <ul class="signed-in-username">
+      <li><%= 'Welcome, '+session[:session_user_name] %>
+        <%= link_to "Logout", destroy_user_session_path, :id => "home-logout-link" %></li>
+        <li class="change-password-link"><%= link_to "Edit Profile", '/users/' + session[:session_user].to_s + '/edit' %></li>
+      </ul>
+      <% end %>
+      </header>
+</div>

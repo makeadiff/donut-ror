@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>Donation Receipt</title>
+<style>
+.bangalore-care-logo
+{
+  background: url("bangalore-care-logo.png") no-repeat;
+  float:right;
+  width: 253px;
+  height:39px;
+  margin:20px 40px;
+}
+.sign-image
+{
+  background: url("sign.png") no-repeat;
+  width: 105px;
+  height:50px;
+  margin:20px 0px 10px;
+}
+.receipt-wrapper
+{
+  width: 960px;
+  margin:0 auto;
+  height: auto;
+  border: 2px solid #cc2028;
+}
+hr
+{
+  color:e4e3e3;
+  margin:80px 0 30px 0;
+}
+.receipt-no-placeholder
+{
+  color: #cc2028;
+}
+.receipt-main-content
+{
+  padding: 30px 40px 20px;
+  font-size: 20px;
+  font-family: arial;
+  color:#484747;
+}
+.donation-receipt-header
+{
+  font-weight:bold;
+  text-align:center;
+}
+.receipt-placeholder
+{
+  color: #cc2028;
+}
+p.sign-name
+{
+margin:10px 0px;
+}
+.eighty-g-note
+{
+  margin: 30px 0 0;
+}
+.eighty-g-note p
+{
+  margin: 15px 0 0 60px;
+}
+.receipt-footer
+{
+  background-color: #CC2028;
+  height:auto;
+  padding: 20px 40px;
+  font-family: arial;
+  color: #ffffff;
+  font-size:20px;
+}
+.bold-text
+{
+  font-weight:bold;
+}
+.address
+{
+  line-height: 36px;
+}
+.additional-info span
+{
+  margin-right:65px;
+}
+.additional-info span:last-child
+{
+  margin-right:0px;
+}
+</style>
+</head>
+<body>
+<div class="receipt-wrapper">
+<div class="bangalore-care-logo">
+	<%= wicked_pdf_image_tag 'bangalore-care-logo.png' %>
+</div>
+<hr>
+<div class="receipt-main-content">
+<div>
+Receipt No :
+<span class="receipt-no-placeholder">
+	<%= session[:don_id] %>
+</span>
+</div>
+<div>
+Date :
+<span class="receipt-no-placeholder">
+	<% _current_time = Time.new  %>
+	<%= _current_time.day %>/<%= _current_time.mon %>/<%= _current_time.year %>
+</span>
+</div>
+<div class="donation-receipt-header">
+DONATION RECEIPT
+</div>
+<p>
+Received with thanks from<span class="receipt-placeholder"> <%= session[:donor_name] %></span> as donation, for the sum of Rs <span class="receipt-placeholder"><%= session[:donation_amount] %>/-</span>
+on behalf of Bangalore Cares Trust on <span class="receipt-placeholder"><%= session[:created_at] %></span> vide Transaction No: <span class="receipt-placeholder"><%= session[:don_id] %></span> as donation towards
+"Uttarkhand Flood Relief".
+</p>
+<div class="sign-image">
+	<%= wicked_pdf_image_tag 'sign.png' %>
+</div>
+<p class="sign-name">Meena Dave,</p>
+<div class="receipt-placeholder">For Bangalore Cares</div>
+<div class="eighty-g-note">Donations are exempt under Section 80G of the IT Act 1961 vide order:
+<p>No: DIT(E)BLR/80G/272/AABTB3573E/ITO(E)-1/Vol2009-10</p>
+<p>Bangalore Cares Pan No: AABTB3573E</p>
+</div>
+</div>
+<div class="receipt-footer">
+<span class="bold-text">Contact : </span><span> Bangalore Cares</span>
+<div class="address">No 104/5, Ground Floor, 12th Cross, 8th Main, Sunkal Farm, Wilson Garden, Bangalore 560 030</div>
+<div class="additional-info"><span>+91-80-2222 2571 (working hours)</span><span>info@bangalorecares.in</span><span>www.bangalorecares.in</span></div>
+</div>
+</div>
+</body>
+</html>

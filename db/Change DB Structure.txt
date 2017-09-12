@@ -1,0 +1,1 @@
+https://www.ralfebert.de/snippets/ruby-rails/models-tables-migrations-cheat-sheet/ 

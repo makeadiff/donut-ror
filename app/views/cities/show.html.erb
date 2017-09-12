@@ -1,0 +1,20 @@
+<h1>City Details</h1>
+<p id="notice"><%= notice %></p>
+
+<div class="show-page">
+    <div class="row">
+        <div class="grid7 read-only-box">
+        	<label class="col2">City</label>
+          	<span class="col9"><%= @city.name %></span>
+      	</div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+        	<label class="col2">Region</label>
+          	<span class="col9"><%= @state.name %></span>
+      	</div>
+    </div>
+</div> 	
+
+<div class="link-button clearfix extra-margin-top-2x"><%= link_to 'Edit', edit_city_path(@city) %></div>
+<div class="link-button clearfix extra-margin-top-2x"><%= link_to 'Back', cities_path %></div>

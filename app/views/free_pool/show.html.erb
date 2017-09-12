@@ -1,0 +1,15 @@
+<% javascript 'get_free_pool_users' %>
+<h1>Free Pool</h1>
+<div class="row">
+  <div class="grid4">
+  	<label class="col4">Select City</label>
+  	<div class="col6">
+  		<%= collection_select(:user, :city_id, City.all.order(:name), :id, :name, {:prompt => 'Select a City'},
+                      :onchange => 'get_free_pool_users(this.value)') %>
+	</div>
+  </div>
+</div>
+
+<div id="free_pool_div" class="">
+  <%= render :partial => 'dynamic_free_pool_users', :object => @free_pool_users %>
+</div>

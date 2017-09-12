@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Styles>
+    <Style ss:ID="sheet-header">
+      <Font ss:Bold="1" />
+    </Style>
+  </Styles>
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row ss:StyleID="sheet-header">
+        <Cell><Data ss:Type="String">Receipt No</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Income Account</Data></Cell>
+        <Cell><Data ss:Type="String">Bank Account</Data></Cell>
+        <Cell><Data ss:Type="String">City</Data></Cell>
+        <Cell><Data ss:Type="String">City Name</Data></Cell>
+        <Cell><Data ss:Type="String">Amount</Data></Cell>
+        <Cell><Data ss:Type="String">Project</Data></Cell>
+        <Cell><Data ss:Type="String">Project Name</Data></Cell>
+        <Cell><Data ss:Type="String">Amount</Data></Cell>
+        <Cell><Data ss:Type="String">Volunteer</Data></Cell>
+        <Cell><Data ss:Type="String">Volunteer Name</Data></Cell>
+        <Cell><Data ss:Type="String">Amount</Data></Cell>
+        <Cell><Data ss:Type="String">Dr Amount</Data></Cell>
+        <Cell><Data ss:Type="String">Cr Amount</Data></Cell>
+        <Cell><Data ss:Type="String">Narration</Data></Cell>
+        <Cell><Data ss:Type="String">Chq No</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+      </Row>
+    <% @report_donations.each do |donation| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= donation.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.created_at.to_datetime.strftime('%d-%m-%Y') %></Data></Cell>
+        <Cell><Data ss:Type="String">Donations</Data></Cell>
+
+        <% case donation.fundraiser_user.city.name.to_s
+            when 'Ahmedabad'
+              bank_account = 'Cash in Hand-Ahmedabad'
+            when 'Bangalore'
+              bank_account = 'Cash in Hand-Bangalore'
+            when 'Bhopal'
+              bank_account = 'Cash in Hand-Bhopal'
+            when 'Chandigarh'
+              bank_account = 'Cash in Hand-Chandigarh'
+            when 'Chennai'
+              bank_account = 'Cash in Hand-Chennai'
+            when 'Cochin'
+              bank_account = 'Cash in Hand-Cochin'
+            when 'Coimbatore'
+              bank_account = 'Cash in Hand-Coimbatore'
+            when 'Dehradun'
+              bank_account = 'Cash in Hand-Dehradun'
+            when 'Delhi'
+              bank_account = 'Cash in Hand-Delhi'
+            when 'Guntur'
+              bank_account = 'Cash in Hand-Guntur'
+            when 'Gwalior'
+              bank_account = 'Cash in Hand-Gwalior'
+            when 'Hyderabad'
+              bank_account = 'Cash in Hand-Hyd'
+            when 'Kolkatta'
+              bank_account = 'Cash in Hand-Kolkatta'
+            when 'Lucknow'
+              bank_account = 'Cash in Hand-Lucknow'
+            when 'Mangalore'
+              bank_account = 'Cash in Hand-Mangalore'
+            when 'Mumbai'
+              bank_account = 'Cash in Hand-Mumbai'
+            when 'Mysore'
+              bank_account = 'Cash in Hand-Mysore'
+            when 'Nagpur'
+              bank_account = 'Cash in Hand-Nagpur'
+            when 'Poona'
+              bank_account = 'Cash in Hand-Pune'
+            when 'Trivandrum'
+              bank_account = 'Cash in Hand-Trivandrum'
+            when 'Vellore'
+              bank_account = 'Cash in Hand-Vellore'
+            when 'Vijayawada'
+              bank_account = 'Cash in Hand-Vijayawada'
+            when 'Vizag'
+              bank_account = 'Cash in Hand-Vizag'
+            else
+              bank_account = donation.fundraiser_user.city.name.to_s
+            end
+        %>
+
+        <Cell><Data ss:Type="String"><%= bank_account %></Data></Cell>
+
+        <% case donation.fundraiser_user.city.name.to_s
+            when 'Poona'
+            	city_name = 'Pune'
+            else
+            	city_name = donation.fundraiser_user.city.name.to_s
+           	end
+        %>
+
+
+        <Cell><Data ss:Type="String">City</Data></Cell>
+        <Cell><Data ss:Type="String"><%= city_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donation_amount %></Data></Cell>
+        <Cell><Data ss:Type="String">Project</Data></Cell>
+        <Cell><Data ss:Type="String">Dream Camp</Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donation_amount %></Data></Cell>
+        <Cell><Data ss:Type="String">MFC</Data></Cell>
+        <Cell><Data ss:Type="String">Volunteer CFR</Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donation_amount %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donation_amount %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= donation.donation_amount %></Data></Cell>
+        <Cell><Data ss:Type="String">Donor Name: <%= donation.donour_user.first_name.to_s + ' ' + donation.donour_user.last_name.to_s %>, Email: <%= donation.donour_user.email_id.to_s %>, Ph: <%= donation.donour_user.phone_no %>, Event Donation</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+

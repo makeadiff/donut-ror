@@ -1,0 +1,77 @@
+.login-box-wrapper
+{
+	float:right;
+	margin-top:20%;
+	width:300px;
+	border: 2px solid #000;
+	border-radius: 5px;
+	color: #000;
+	background-color: #fff;
+	padding: 0px 20px 10px;
+}
+body{
+	background-color:#ed1848;
+}
+
+.login-page-wrapper
+{
+	background:url('/assets/mad-logo.jpeg') no-repeat top left transparent;
+	width:1060px;
+	margin: -8px auto 0;
+	height: 215px;
+}
+.login-info-wrapper
+{
+	float:left;
+	width:600px;
+}
+.sign-in-button input[type="submit"]
+{
+	margin: 10px 0;
+	background-color: #ed1848;
+	padding: 5px 15px;
+	color: #ffffff;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+}
+.remember-me-checkbox
+{
+	margin: 5px 0;
+}
+.login-head #flash_alert
+{
+	position: static;
+	right:200px;
+}
+.login-error
+{
+	color: #ff0022;
+	margin-top:10px;
+}
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+.login-box-wrapper {
+    float: left;
+    margin: 22% 0 0 2%;
+    width:200px;
+}
+.login-page-wrapper
+{
+	margin-top:-45px;
+}
+}
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+.login-page-wrapper
+{
+	margin-top:-45px;
+}
+.login-box-wrapper{
+    float: left;
+    margin: 22% 0 0 2%;
+    width:200px;
+}
+}

@@ -1,0 +1,14 @@
+<h1>Region Details</h1>
+<p id="notice"><%= notice %></p>
+<div class="show-page">
+    <div class="row">
+        <div class="grid7 read-only-box">
+  			<label class="col2">Region</label>
+  			<span class="col9"><%= @state.name %></span>
+		</div>
+	</div>
+</div>
+
+
+<div class="link-button clearfix extra-margin-top-2x"><%= link_to 'Edit', edit_state_path(@state) %></div>
+<div class="link-button clearfix extra-margin-top-2x"><%= link_to 'Back', states_path %></div>

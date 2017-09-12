@@ -1,0 +1,52 @@
+<script type="text/javascript">
+	init = function(){
+		$("td input").bind('click',function(){
+			if($(this).parent("td").siblings("td").children("#user_manager_id").val() == "")
+			{
+				alert("Please select CFR POC");
+			}
+			else
+			{
+				alert($(this).parent("td").siblings("td").children("#user_manager_id").find(":selected").text()+" has been assigned as a CFR POC");
+			}
+			
+		});
+	};
+
+  window.onload = init;
+</script>
+<% unless @free_pool_users.empty? %>
+    <table>
+      <thead>
+      <tr>
+        <th width="125"><%= 'Name' %></th>
+        <th width="75"><%= 'Phone no' %></th>
+        <th width="175"><%= 'Role' %></th>
+        <th width="140">Assign Role</th>
+        <th width="75"><%= 'CFR POC' %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <td colspan="6">
+        <% @free_pool_users.each do |user| %>
+            <%= form_tag({:user_id => user.id.to_s},method: 'post' , :remote => true , :class => 'assign_user',id: 'user_id_' + user.id.to_s)  do%>
+                <table>
+                  <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.phone_no %></td>
+                    <%
+                       current_user_roles=''
+                       user.roles.each do |role|
+                         current_user_roles = current_user_roles  + role.role + '  '
+                       end
+                    %>
+                    <td><%= current_user_roles%></td>
+                    <td class="cfr-freepool"><%= collection_select(:user, :manager_id, @pocs, :id, :name, {:prompt => 'Select a ' + Role.CFR_POC}) %></td>
+                    <td><%= submit_tag 'Assign', :disable_with => "Please wait..."%></td>
+                  </tr>
+                </table>
+            <%end%>
+        <% end %>
+        </tbody>
+    </table>
+<% end %>

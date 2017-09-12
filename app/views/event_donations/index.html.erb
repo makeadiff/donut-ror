@@ -1,0 +1,41 @@
+<h1>Listing Event Donations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Donation type</th>
+      <th>Version</th>
+      <th>Fundraiser</th>
+      <th>Donour</th>
+      <th>Donation status</th>
+      <th>Eighty g required</th>
+      <th>Event</th>
+      <th>Event Ticket Type</th>
+      <th>Donation amount</th>
+      <th colspan="3" class="align-center"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @donations.each do |donation| %>
+      <tr>
+        <td><%= donation.donation_type %></td>
+        <td><%= donation.version %></td>
+        <td><%= donation.fundraiser_id %></td>
+        <td><%= donation.donour_id %></td>
+        <td><%= donation.donation_status %></td>
+        <td><%= donation.eighty_g_required %></td>
+        <td><%= donation.event_id %></td>
+        <td><%= donation.event_ticket_type_id %></td>
+        <td><%= donation.donation_amount %></td>
+        <td><%= link_to 'Show', donation %></td>
+        <td><%= link_to 'Edit', edit_event_donation_path(donation) %></td>
+        <td><%= link_to 'Destroy', donation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Donation', new_event_donation_path %>

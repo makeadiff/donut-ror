@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  collected_from_user_id: 1
+  given_to_user_id: 1
+  added_on: 2017-09-03 12:45:19
+  reviewed_on: 2017-09-03 12:45:19
+  amount: 9.99
+  status: MyString
+
+two:
+  collected_from_user_id: 1
+  given_to_user_id: 1
+  added_on: 2017-09-03 12:45:19
+  reviewed_on: 2017-09-03 12:45:19
+  amount: 9.99
+  status: MyString

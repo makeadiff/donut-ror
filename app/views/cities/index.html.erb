@@ -1,0 +1,30 @@
+<h1>Listing Cities</h1>
+<div class="link-button clearfix"><%= link_to 'Create New City', new_city_path %></div>
+<table>
+  <thead>
+    <tr>
+      <th><%= sortable "City" %></th>
+      <th><%= sortable "Region" %></th>
+      <th colspan="2" class="align-center">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cities.each do |city| %>
+      <tr>
+        <td><%= city.name %></td>
+        <td><%= city.state_name.name %></td>
+        <td><%= link_to 'Show', city %></td>
+        <td><%= link_to 'Edit', edit_city_path(city) %></td>
+        <!-- <td><%= link_to 'Delete', city, method: :delete, data: { confirm: 'Are you sure you want to delete this city?' } %></td>-->
+      </tr>
+    <% end %>
+    <tr class="pagination-row">
+          <td colspan="7"><div class="will-paginate"><%= will_paginate @cities %></div></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+<!-- <%= link_to 'Home', homes_path %> -->

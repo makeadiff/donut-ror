@@ -1,0 +1,57 @@
+<%= javascript_include_tag 'application' %>
+<%= javascript_include_tag 'jquery.js' %>
+
+<h2>Edit Donation</h2>
+
+<% if @donor.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@donor.errors.count, "error") %> prohibited this donor from being saved:</h2>
+ 
+    <ul>
+    <% @donor.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_tag do %>
+<div class="row grid5">
+    <% if User.has_role Role.CITY_FINANCIAL_CONTROLLER,session[:roles] %>
+    <div class="row">
+        <%= label_tag :donation_amount, "Amount", :class => 'col3' %>
+        <%= text_field_tag :donation_amount, @donation.donation_amount, :class => 'col6' %>
+    </div>
+
+    <h3>Donor Details</h3>
+    <%
+    end
+    %>
+    <div class="row">
+        <%= label_tag :first_name, "First Name", :class => 'col3' %>
+        <%= text_field_tag :first_name, @donor.first_name, :class => 'col6' %>
+    </div>
+    <div class="row">
+        <%= label_tag :last_name, "Last Name", :class => 'col3' %>
+        <%= text_field_tag :last_name, @donor.last_name, :class => 'col6' %>
+    </div>
+    <div class="row">
+        <%= label_tag :email_id, "Email", :class => 'col3' %>
+        <%= text_field_tag :email_id, @donor.email_id, :class => 'col6' %>
+    </div>
+    <div class="row">
+        <%= label_tag :phone_no, "Phone", :class => 'col3' %>
+        <%= text_field_tag :phone_no, @donor.phone_no, :class => 'col6' %>
+    </div>
+    <div class="row">
+        <%= label_tag :address, "address", :class => 'col3' %>
+        <%= text_area_tag :address, @donor.address, :class => 'col6' %>
+    </div>
+
+    <div class="actions">
+	    <%= submit_tag %>
+	    <%= hidden_field_tag :donor_id, @donor.id %>
+	    <%= hidden_field_tag :donation_id, @donation_id %>
+	  </div>
+</div>
+<% end %>

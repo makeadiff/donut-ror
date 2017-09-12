@@ -1,0 +1,37 @@
+<% javascript 'application' %>
+<h1>CFR Products</h1>
+<%= form_tag('/cfr_products', :method => 'get') do %>  
+  <p>  
+    <%= text_field_tag :search, params[:search] %>  
+    <%= submit_tag "Filter by Region", :name => nil %>  
+  </p> 
+<% end %>
+<div class="link-button clearfix"><%= link_to 'Create New CFR Product', new_cfr_product_path %></div>
+<table>
+  <thead>
+    <tr>
+      <th>CFR Product Name</th>
+      <th>City</th>
+      <th>Target</th>
+      <th>Logo</th>
+      <th colspan="3" class="align-center">Actions</th>
+      <!--<th></th>-->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cfr_products.each do |cfr_product| %>
+      <tr>
+        <td width="200"><%= cfr_product.name %></td>
+        <td width="100"><%= cfr_product.city_name(cfr_product.city_id) %></td>
+        <td width="70"><%= cfr_product.target %></td>
+        <td width="150"><%= image_tag cfr_product.image_logo , :size => "100x60"%></td>
+        <td width="50"><%= link_to 'Show', cfr_product %></td>
+        <td width="50"><%= link_to 'Edit', edit_cfr_product_path(cfr_product) %></td>
+        <td><%= link_to 'Delete', cfr_product, method: :delete, data: { confirm: 'Are you sure you want to delete this CFR Product?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- <%= link_to 'Home', homes_path %>-->

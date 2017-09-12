@@ -1,0 +1,104 @@
+<% javascript 'dynamic_managers' %>
+<% javascript 'validate_role' %>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.new_user #submit_form').prop("disabled",true);
+	$('.edit_user #submit_form').prop("disabled",false);
+	if ($('.new_user').has('#error_explanation')){
+		$('#submit_form').prop("disabled",false);
+		}
+});
+$(document).ready(function() {
+    $("#phoneNo").keydown(function(event) {
+    	// Allow only backspace and delete
+    	if ( event.keyCode == 46 || event.keyCode == 9 || event.keyCode == 8 || (event.keyCode >= 35 && event.keyCode <= 39) ||
+    	(event.keyCode == 65 && event.ctrlKey == true) ||
+    	(event.keyCode == 67 && event.ctrlKey == true) ||
+    	(event.keyCode == 86 && event.ctrlKey == true) ||
+    	(event.keyCode == 88 && event.ctrlKey == true)  ) {
+    		// let it happen, don't do anything
+    	}
+    	else {
+    		// Ensure that it is a number and stop the keypress
+    		if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+    			event.preventDefault();	
+    		}	
+    	}
+    });
+});
+</script>
+<%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="grid4">
+        <%= f.label :email, :class => 'col4'%>
+        <%= f.text_field :email, :class => 'col6',:maxlength => 55 %>
+      </div>
+      <div class="grid4">
+        <%= f.label :phone_no, :class => 'col4' %>
+        <%= f.text_field :phone_no, :class => 'col6',:maxlength => 10, :id => "phoneNo" %>
+      </div>
+      <div class="grid4">
+        <%= f.label "Password", :class => 'col4'%>
+        <%= f.password_field :password, :class => 'col6',:maxlength => 30 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="grid4">
+        <%= f.label :first_name, :class => 'col4' %>
+        <%= f.text_field :first_name, :class => 'col6',:maxlength => 55 %>
+      </div>
+      <div class="grid4">
+        <%= f.label :last_name, :class => 'col4' %>
+        <%= f.text_field :last_name, :class => 'col6',:maxlength => 55 %>
+      </div>
+      <div class="grid4">
+        <%= f.label :address, :class => 'col4' %>
+        <%= f.text_field :address, :class => 'col6',:maxlength => 200 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="grid4">
+        <%= f.label "Role", :class => 'col4' %>
+        <div class="col6">
+          <%= 
+          unless User.has_role Role.ADMINISTRATOR,session[:roles]
+            disabled_items = @roles.collect {|i| i.id }.reject {|item| item == @selected_role || item < 8 } # Disable all except users current role and 'CFR POC' and 'Volunteer'
+          end
+
+          select(:user, :role_id, @roles.order(:role).collect {|role| [ role.role, role.id ] }, {
+                :prompt => 'Select a Role',
+                :selected => @selected_role,
+                :disabled => disabled_items
+              },{
+                :onchange => 'dynamic_managers(this.value,user_city_id.value)'
+              }) 
+          %>
+        </div>
+      </div>
+      <div class="grid4">
+        <%= f.label "City", :class => 'col4'%>
+        <div class="col6">
+          <%= collection_select(:user, :city_id, City.all.order(:name), :id, :name, {:prompt => 'Select a City'},
+                              :onchange => 'dynamic_managers(user_role_id.value,this.value)' ) %>
+        </div>
+      </div>
+      <div id="manager_div" class="grid4">
+        <%= render :partial => 'managers', :object => @managers %>
+      </div>
+    </div>
+    <div id="submit_button" class="actions">
+      <%= f.submit :id => 'submit_form'%>
+    </div>
+<% end %>

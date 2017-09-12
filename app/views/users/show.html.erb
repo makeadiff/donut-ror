@@ -1,0 +1,52 @@
+<h1>User Details</h1>
+<p id="notice"><%= notice %></p>
+<div class="show-page">
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col2">First Name</label>
+            <span class="col9"><%= @user.first_name %></span>
+        </div>
+    </div>
+    <div class="row">    
+        <div class="grid7 read-only-box">
+            <label class="col2">Last Name</label>
+            <span class="col9"><%= @user.last_name %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col2">Email</label>
+            <span class="col9"><%= @user.email %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col2">Address</label>
+            <span class="col9"><%= @user.address %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col2">Phone No</label>
+            <span class="col9"><%= @user.phone_no %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col2">City</label>
+            <span class="col9"><%= @city.name %></span>
+        </div>
+    </div>
+     <div class="row">
+        <div class="grid7 read-only-box">
+            <label class="col2">POC</label>
+       		<span class="col9"><%= @user.poc_names %></span>
+        </div>
+    </div>
+</div>
+<div class="link-button clearfix extra-margin-top-2x">
+    <%= link_to 'Edit', edit_user_path(@user) %>
+</div>
+<div class="link-button clearfix extra-margin-top-2x">
+    <%= link_to 'Back', users_path %>
+</div>

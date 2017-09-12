@@ -1,0 +1,40 @@
+<h1>CFR Transactions</h1>
+<%= form_tag('/cfrtransactions/index', :method => 'get') do %>  
+  <p>  
+    <%= text_field_tag :search, params[:search] %>  
+    <%= submit_tag "Search", :name => nil %>  
+  </p> 
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th><%= sortable MadConstants.donation_type %></th>
+      <th><%= sortable MadConstants.fundraiser_name %></th>
+      <th><%= sortable MadConstants.donor_name %></th>
+      <th><%= sortable MadConstants.donation_status %></th>
+      <th><%= sortable MadConstants.eighty_g_required %></th>
+      <th><%= sortable MadConstants.product %></th>
+      <th><%= sortable MadConstants.donation_amount %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @donations.each do |donation| %>
+      <tr>
+        <td><%= donation.donation_type.to_s %></td>
+        <td><%= donation.fundraiser_user.first_name.to_s + ' ' + donation.fundraiser_user.last_name.to_s %></td>
+        <td><%= donation.donour_user.first_name.to_s + ' ' + donation.donour_user.last_name.to_s %></td>
+        <td><%= donation.donation_status.to_s %></td>
+        <td><%= donation.eighty_g_required %></td>
+        <td><%= donation.cfr_product %></td>
+        <td class="number-column"><%= donation.donation_amount %></td>
+      </tr>
+    <% end %>
+      <tr class="pagination-row">
+          <td colspan="7"><div class="will-paginate"><%= will_paginate @donations %></div></td>
+      </tr>
+  </tbody>
+</table>
+
+
+<!-- <%= link_to 'Home', homes_path %> -->

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+
+GEM_HOME=/home/makeadiff/.rvm/gems/ruby-2.0.0-p247
+IRBRC=/home/makeadiff/.rvm/rubies/ruby-2.0.0-p247/.irbrc
+OLDPWD=/home/makeadiff/makeadifference/webapp/makeadiff
+MY_RUBY_HOME=/home/makeadiff/.rvm/rubies/ruby-2.0.0-p247
+SSH_TTY=/dev/pts/1
+USER=makeadiff
+_system_type=Linux
+rvm_path=/home/makeadiff/.rvm
+rvm_prefix=/home/makeadiff
+MAIL=/var/mail/makeadiff
+PATH=/home/makeadiff/bin:/home/makeadiff/.rvm/gems/ruby-2.0.0-p247/bin:/home/makeadiff/.rvm/gems/ruby-2.0.0-p247@global/bin:/home/makeadiff/.rvm/rubies/ruby-2.0.0-p247/bin:/home/makeadiff/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/makeadiff/.rvm/bin
+PWD=/home/makeadiff
+LANG=en_US.UTF-8
+_system_arch=x86_64
+_system_version=12.04
+rvm_version=1.22.3
+SHLVL=1
+HOME=/home/makeadiff
+LANGUAGE=en_US:en
+LOGNAME=makeadiff
+GEM_PATH=/home/makeadiff/.rvm/gems/ruby-2.0.0-p247:/home/makeadiff/.rvm/gems/ruby-2.0.0-p247@global
+RUBY_VERSION=ruby-2.0.0-p247
+system_name=Ubuntu
+
+
+
+SERVICE='rails'
+timestamp(){
+	date +"%T"
+}
+
+if ps -ef | grep -v grep | grep $SERVICE > /dev/null
+then
+	echo "$(timestamp) : $SERVICE is running" >> server_downtime.log
+else
+	echo "$(timestamp) : $SERVICE is not running" >> server_downtime.log
+	cd /home/makeadiff/makeadifference/webapp/makeadiff
+	rails s -p 3000 -d -e production >> server_downtime.log
+fi

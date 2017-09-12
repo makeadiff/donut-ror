@@ -1,0 +1,75 @@
+<h1 class="home-heading">Welcome to Make a Difference</h1>
+
+
+<ul class="home-links">
+  <% session[:roles].each do |role|
+    if role.role != "Volunteer"
+  %>
+          <li class="user-link"><%= link_to 'Users', users_path %></li>
+      <% end %>
+      <% break if role.role != "Volunteer" %>
+  <% end %>
+  <% if @is_admin %>
+      <li class="states-link"><%= link_to 'Regions', states_path %></li>
+      <li class="cities-link"><%= link_to 'Cities', cities_path %></li>
+  <% end%>
+  <%if @is_admin || ( User.has_role_from CfrProductsController.permitted_roles,session[:roles])%>
+      <li class="cfr-link"><%= link_to 'CFR Products', cfr_products_path %></li>
+      <li class="cfr-transaction-link"><%= link_to 'CFR Transactions', cfrtransactions_path %></li>
+  <% end %>
+  <%if @is_admin || (User.has_role_from EventsController.permitted_roles,session[:roles]) %>
+      <li class="event-transaction-link"><%= link_to 'Event Transactions', eventtransactions_path %></li>
+      <li class="events-link"><%= link_to 'Events', events_path %></li>
+  <%end%>
+  <% if User.has_role_from DonationApprovalController.permitted_roles,session[:roles] %>
+      <li class="donation-approval-link"><%= link_to 'Donation Approvals', MadConstants.donation_approval_path %></li>
+  <%end%>
+  <% if User.has_role_from EventsDonationApprovalsController.permitted_roles,session[:roles] %>
+      <li class="event-approvals"><%= link_to 'Events Donations Approvals', MadConstants.events_donation_approval_path %></li>
+  <%end%>
+  
+  <% if User.has_role_from EightyGApprovalController.permitted_roles,session[:roles] %>
+      <li class="donation-approval-link"><%= link_to '80g Approvals', MadConstants.eighty_g_approval_path %></li>
+  <%end%>
+  <% if User.has_role_from NationalcfrreportsController.permitted_roles,session[:roles] %>
+      <li class="cfr-reports"><%= link_to 'National CFR Reports', MadConstants.national_cfr_reports_path %></li>
+  <%end%>
+  <% if User.has_role_from NationaltallyreportsController.permitted_roles,session[:roles] %>
+      <li class="finance-reports"><%= link_to 'National Tally Reports', 'nationaltallyreports/show' %></li>
+  <%end%>
+  <% if User.has_role_from NationaltallyeventreportsController.permitted_roles,session[:roles] %>
+      <li class="finance-reports"><%= link_to 'National Tally Event Reports', 'nationaltallyeventreports/show' %></li>
+  <%end%>
+  <% if User.has_role_from NationaleventreportsController.permitted_roles,session[:roles] %>
+      <li class="event-reports"><%= link_to 'National Event Reports', MadConstants.national_event_reports_path %></li>
+  <%end%>
+  <% if User.has_role_from NationalfinancereportsController.permitted_roles,session[:roles] %>
+      <li class="finance-reports"><%= link_to 'National Finance Reports', MadConstants.national_finance_reports_path %></li>
+  <%end%>
+  <% if User.has_role_from CitypresidentreportsController.permitted_roles,session[:roles] %>
+      <li class="city-reports"><%= link_to 'City President Reports', MadConstants.city_president_reports_path %></li>
+  <%end%>
+  <% if User.has_role_from FinancefellowreportsController.permitted_roles,session[:roles] %>
+      <li class="finance-reports"><%= link_to 'Donation Reports', MadConstants.finance_fellow_reports_path %></li>
+  <%end%>
+  <% if User.has_role_from EventsfellowreportsController.permitted_roles,session[:roles] %>
+      <li class="event-reports"><%= link_to 'City Events Reports', MadConstants.event_fellow_reports_path %></li>
+  <%end%>
+  <% if User.has_role_from CfrfellowreportsController.permitted_roles,session[:roles] %>
+      <li class="cfr-reports"><%= link_to 'CFR Fellow Reports', MadConstants.cfr_fellow_reports_path %></li>
+  <%end%>
+  <% if User.has_role_from PocreportsController.permitted_roles,session[:roles] %>
+      <li class="vol-reports"><%= link_to 'POC Reports', MadConstants.poc_reports_path %></li>
+  <%end%>
+  <% if User.has_role_from VolreportsController.permitted_roles,session[:roles] %>
+      <li class="vol-reports"><%= link_to 'Vol Reports', MadConstants.vol_reports_path %></li>
+  <%end%>
+  
+  <% if User.has_role_from FreePoolController.permitted_roles,session[:roles] %>
+      <li class="free-pool-link"><%= link_to 'Free Pool', MadConstants.free_pool_path %></li>
+  <%end%>
+
+  <% if User.has_role_from [Role.ADMINISTRATOR, Role.EVENTS_FELLOW, Role.CFR_FELLOW], session[:roles] %>
+      <li class="fetch-users"><a href="http://makeadiff.in/apps/automate/select_user_for_data_copy.php" target="_new">Fetch Users from MADApp</a></li>
+  <%end%>
+</ul>

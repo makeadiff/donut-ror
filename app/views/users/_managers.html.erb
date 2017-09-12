@@ -1,0 +1,9 @@
+
+<% 
+   if !@role_has_managers.nil? || @role_has_managers 
+   %>
+    <label for="manager_div" class="col4">Manager</label>
+    <div class="col6">
+    	<%= collection_select(:user, :manager_id, @managers, :id, :name, {:prompt => 'Select a Manager',:selected => @selected_manager},{:disabled=>  @manager_disabled}) %>
+	</div>
+<%end%>

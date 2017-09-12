@@ -1,0 +1,51 @@
+<% javascript 'dynamic_pocs' %>
+
+<%= form_for(@volunteer) do |f| %>
+  <% if @volunteer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@volunteer.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @volunteer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_no %><br>
+    <%= f.text_field :phone_no %>
+  </div>
+  <div class="field">
+    <%= f.label "Password" %><br>
+    <%= f.password_field :encrypted_password %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label "City" %><br>
+   	<%= collection_select(:user, :city_id, City.all, :id, :name, {:prompt => 'Select a City'}, 
+   			:onchange => 'dynamic_pocs(this.value)' ) %>
+  </div>
+  <div class="field" id="poc_div">
+    <%= render :partial => 'pocs', :object => @pocs %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

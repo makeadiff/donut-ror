@@ -1,0 +1,80 @@
+<% javascript 'dynamic_volunteers', 'dynamic_cities' %>
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row grid5">
+    <div class="row">
+        <%= f.label :event_name, :class => 'col3' %>
+        <%= f.text_field :event_name, :class => 'col6',:maxlength => 50, :disabled => 'disabled' %>
+    </div>
+    <div class="row">
+        <%= f.label :description, :class => 'col3' %>
+        <%= f.text_field :description, :class => 'col6',:maxlength => 200, :disabled => 'disabled' %>
+    </div>
+    <div class="row">
+        <%= f.label :ticket_price, :class => 'col3' %>
+        <%= f.text_field :ticket_price, :class => 'col6', :id => "ticketPrice",:maxlength => 10, :disabled => 'disabled' %>
+    </div>
+    <div class="row">
+        <%= f.label :venue_address,:class => 'col3' %>
+        <%= f.text_area :venue_address,:class => 'col6',:maxlength => 200, :disabled => 'disabled' %>
+    </div> 
+    <div class="row">
+          <%= f.label "Region", :class => 'col3' %>
+          <div class="col6 state-select">
+            <%= collection_select(:event, :state_id, State.all.order(:name), :id, :name, {:prompt => true} , :onchange => 'dynamic_cities(this.value)') %>
+          </div>
+    </div>
+
+    <div class="row">
+          <div id="cities_div" >
+            <%= render :partial => 'cities', :object => @cities %>
+          </div>
+    </div>
+    
+    <div class="row">
+  	    <%= f.label :date_range_from, :class => 'col3' %>
+  	    <span id="datepickerFrom"><%= f.text_field :date_range_from, :id => 'datepicker_from', :class => 'col6', :disabled => 'disabled' %> </span>
+    </div>
+    <div class="row">
+  	    <%= f.label :date_range_to, :class => 'col3' %>
+  	    <span id="datepickerTo"><%= f.text_field :date_range_to, :id => 'datepicker_to', :class => 'col6', :disabled => 'disabled' %>
+        </span>
+    </div>
+
+    <div class="row">
+      <%= f.label "Status", :class => 'col3' %>
+      <div class="col6 status-select">
+        <%= f.check_box :status %>
+        <%= f.label :status, "Active" %>
+      </div>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </div>
+  <div class="row grid5">
+    <div class="row">
+          <%= f.label :upload_picture, :class => 'col3' %>
+          <%= f.file_field :image_url, :class => 'col6', :accept => 'image/*' %>
+    </div>
+    
+    <div class="row">
+        <div id="volunteer_div">
+          <%= render :partial => 'volunteer', :object => @volunteers %>
+        </div>
+    </div>
+  </div>
+
+<% end %>

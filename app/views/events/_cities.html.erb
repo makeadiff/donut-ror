@@ -1,0 +1,5 @@
+<% javascript 'dynamic_volunteers' %>
+	<label for="cities_div" class="col3">City</label>
+	<div class="col6 city-select">
+		<%= collection_select(:event, :city_id, @cities, :id, :name, :onchange => 'dynamic_volunteers_by_city(this.value)') %>
+	</div>

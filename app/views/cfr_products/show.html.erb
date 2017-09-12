@@ -1,0 +1,50 @@
+<h1>CFR Product Details</h1>
+<p id="notice"><%= notice %></p>
+
+<div class="show-page">
+    <div class="row">
+        <div class="grid7 read-only-box">
+          <label class="col2">Product</label>
+          <span class="col9"><%= @cfr_product.name %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+          <label class="col2">Description</label>
+          <span class="col9"><%= @cfr_product.description %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+          <label class="col2">Target</label>
+          <span class="col9"><%= @cfr_product.target %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+          <label class="col2">Start Date</label>
+          <span class="col9"><%= @cfr_product.start_date %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+          <label class="col2">End Date</label>
+          <span class="col9"><%= @cfr_product.end_date %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+          <label class="col2">City</label>
+          <span class="col9"><%= @cfr_city.name %></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="grid7 read-only-box">
+          <label class="col2">Logo</label>
+          <span class="col9"><%= image_tag @cfr_product.image_logo_url.to_s, :size => "150x150"%></span>
+        </div>
+    </div>
+</div>
+
+<div class="link-button clearfix extra-margin-top-2x"><%= link_to 'Edit', edit_cfr_product_path(@cfr_product) %></div>
+<div class="link-button clearfix extra-margin-top-2x"><%= link_to 'Back', cfr_products_path %></div>

@@ -1,0 +1,163 @@
+<%= javascript_include_tag 'application' %>
+<%= javascript_include_tag 'jquery.js', 'jquery_ujs' ,'jquery-ui'%>
+<script>
+    $(document).ready(function() {
+        $(".approve_donation").on('ajax:success', function (e, xhr) {
+            $('#form_id_' + xhr).fadeOut();
+        });
+    });
+    $(document).ready(function() {
+        $(".approve_all_donation").on('ajax:success', function (e, xhr) {
+            $('#form_id_' + xhr).fadeOut();
+            $('#div_id_' +xhr).fadeOut();
+        });
+    });
+    $(function() {
+        $( "#accordion" ).accordion();
+        $( "#accordion1" ).accordion();
+    });
+</script>
+<%= form_tag('/donation_approval/show', :method => 'get') do %>  
+  <p>  
+    <%= text_field_tag :search, params[:search] %>  
+    <%= submit_tag "Search", :name => nil %>  
+  </p> 
+<% end %>
+
+<h2 class="mobile-heading"> <%= @approver.current_role.to_s +  ' Name : '   + @approver.first_name + ' ' + @approver.last_name%> </h2>
+    <table class="donation-table">
+      <thead>
+      <tr>
+        <th width="21%"><%= @approver.subordinate_role%></th>
+        <th width="12%">Transaction ID</th>
+        <th width="23%">Date</th>
+        <th width="15%">Donor</th>
+        <th width="10%">Amount</th>
+        <th width="12%">City</th>
+        <th width="15%">Approve</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+            <td colspan="7">
+        <div id="accordion" style="width:990px;">
+          <% @subordinates.each do |subordinate|%>
+              <h3 id="form_id_<%=subordinate.id.to_s%>"><%= subordinate.first_name + ' ' + subordinate.last_name%>
+                <span style="margin-left:15%;"><%= label_tag  subordinate.total_donation_amount%></span>
+              </h3>
+              <div id="div_id_<%=subordinate.id.to_s%>">
+                <p>
+                  <%  unless subordinate.donations.nil? %>
+                      <%= form_tag({:manager_id => @approver.id.to_s,:subordinate_id => subordinate.id.to_s,:approve_all => true},method: 'put' , :remote => true , :class => 'approve_all_donation', :id => 'form_id_' + subordinate.id.to_s)  do%>
+                        <div class="approve-all-button"><%= submit_tag('Approve All' ) %></div>
+
+                    <%end
+                      subordinate_city_name = subordinate.city.name.to_s%>
+                    <%subordinate.donations.each do|donation|
+                      if donation.donation_status == Donation.get_approval_status_by_role(@approver.current_role)[:current_status]%>
+
+                            <%= form_tag({:manager_id => @approver.id.to_s, :donation_id => donation.id.to_s},method: 'put' , :remote => true , :class => 'approve_donation', :id => 'form_id_' + donation.id.to_s)  do%>
+                                <table class="individual-donation-table">
+                                  <tr>
+                                    <td width="180">
+
+                                    </td>
+                                    <td width="115">
+                                      <%= label_tag donation.id.to_s %>
+                                    </td>
+                                    <td width="230">
+                                      <%= label_tag  donation.created_at.to_formatted_s(:long) %>
+                                    </td>
+                                    <% if ((donation.donour_user.last_name == "")||(donation.donour_user.last_name == " ")||(donation.donour_user.last_name == nil))%>
+	                                    <td width="150">
+	                                      <%= label_tag donation.donour_user.first_name%>
+	                                    </td>
+	                                <%else%>
+	                                <td width="150">
+	                                      <%= label_tag donation.donour_user.first_name+" "+donation.donour_user.last_name%>
+	                                    </td>
+	                                <%end%>
+                                    <td width="80">
+                                      <%= label_tag donation.donation_amount %>
+                                    </td>
+                                    <td width="120">
+                                      <%= label_tag subordinate_city_name %>
+                                    </td>
+                                    <% if User.has_role Role.CFR_POC,session[:roles] %>
+                                    <td><a href="/donation_approval/edit_donation/<%=donation.id%>">Edit</a></td>
+                                    <% end %>
+
+                                    <% if User.has_role Role.CITY_FINANCIAL_CONTROLLER,session[:roles] %>
+                                    <td><a href="/donation_approval/edit_donation/<%=donation.id%>">Edit</a></td>
+                                    <td><a href="/donation_approval/delete/<%=donation.id%>">Delete</a></td>
+                                    <% end %>
+
+                                    <td width="80">
+                                      <div class="approve-button"><%= submit_tag('Approve' ) %>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </table>
+                            <%end %>
+                        <% end %>
+                    <%end%>
+                <% end %>
+                </p>
+              </div>
+          <% end %>
+        </div>
+        </td>
+      </tr>
+      </tbody>
+</table>
+    <div id="accordion1">
+      <% @subordinates.each do |subordinate|%>
+          <h3 id="form_id_<%=subordinate.id.to_s%>"><%= subordinate.first_name + ' ' + subordinate.last_name%>
+            <span>Total Amount:<%= label_tag  subordinate.total_donation_amount%></span>
+          </h3>
+          <div id="div_id_<%=subordinate.id.to_s%>">
+            <p>
+              <%  unless subordinate.donations.nil? %>
+                  <%= form_tag({:manager_id => @approver.id.to_s,:subordinate_id => subordinate.id.to_s,:approve_all => true},method: 'put' , :remote => true , :class => 'approve_all_donation', :id => 'form_id_' + subordinate.id.to_s)  do%>
+                    <div class="approve-all-button"><%= submit_tag('Approve All' ) %></div>
+
+                <%end
+                  subordinate_city_name = subordinate.city.name.to_s%>
+                <ul class="individual-donation-list-wrapper">
+                  <li>
+                <%subordinate.donations.each do|donation|
+                  if donation.donation_status == Donation.get_approval_status_by_role(@approver.current_role)[:current_status]%>
+                      
+                        <%= form_tag({:manager_id => @approver.id.to_s, :donation_id => donation.id.to_s},method: 'put' , :remote => true , :class => 'approve_donation', :id => 'form_id_' + donation.id.to_s)  do%>
+                            <ul class="individual-donation-list">
+                              <li>
+                                <span>Transaction ID :</span><%= label_tag donation.id.to_s %>
+                              </li>
+                              <li>
+                                <span>Date :</span><%= label_tag  donation.created_at.to_formatted_s(:long) %>
+                              </li>
+                              <li>
+                                <span>Amount :</span><%= label_tag donation.donation_amount %>
+                              </li>
+                              <li>
+                                <span>Region :</span><%= label_tag subordinate_city_name %>
+                              </li>
+                              <li>
+                                <%= submit_tag('Approve' ) %>
+                              </li>
+                            </ul> 
+                        <%end %>
+                    <% end %>
+                  
+                <%end%>
+            <% end %>
+            </li>
+            </ul>
+            </p>
+          </div>
+      <% end %>
+    </div>
+    <div class="donation-table-paginator" style="width:1008px;">
+      <%= paginate @subordinates unless @subordinates.nil? %>
+    </div>
+  

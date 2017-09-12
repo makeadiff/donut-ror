@@ -1,0 +1,98 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.home-links
+{
+	padding: 0px;
+}
+.home-links li
+{
+	list-style-type:none;
+	margin-right:5px;
+	display: inline-table;
+	border-spacing: 5px 8px;
+}
+.home-links li a
+{
+	color: #FFFFFF;
+    text-decoration: none;
+    width:125px;	
+	height:125px;
+	display:block;
+	border-radius:5px;
+	text-align:center;
+	background-color: #ed1848 !important;
+}
+.home-links li a:hover
+{
+	opacity:0.85;
+}
+li.user-link a
+{
+	background: url('/assets/users.png') no-repeat center center #333231;
+}
+li.states-link a
+{
+	background: url('/assets/states.png') no-repeat center center #333231;
+}
+li.cities-link a
+{
+	background: url('/assets/cities.png') no-repeat center center #333231;
+}
+li.cfr-link a
+{
+	background: url('/assets/cfr.png') no-repeat center center #333231;
+}
+li.cfr-transaction-link a
+{
+	background: url('/assets/transactions.png') no-repeat center center #333231;
+}
+li.events-link a
+{
+	background: url('/assets/events.png') no-repeat center center #333231;
+}
+li.donation-approval-link a
+{
+	background: url('/assets/donation-approvals.png') no-repeat center center #333231;
+}
+li.event-approvals a
+{
+	background: url('/assets/event-approvals.png') no-repeat 35px 40px #333231;
+}
+li.event-transaction-link a
+{
+	background: url('/assets/event-transactions.png') no-repeat center center #333231;
+}
+li.free-pool-link a
+{
+	background: url('/assets/pool.png') no-repeat center center #333231;
+}
+li.fetch-users a
+{
+	background: url('/assets/volunteers.png') no-repeat center center #333231;
+}
+li.vol-reports a
+{
+	background: url('/assets/reports.png') no-repeat center 5px #333231;
+}
+li.cfr-reports a
+{
+	background: url('/assets/cfr-reports.png') no-repeat center 40px #333231;
+}
+li.event-reports a
+{
+	background: url('/assets/event-reports.png') no-repeat center 40px #333231;
+}
+li.finance-reports a
+{
+	background: url('/assets/finance-reports.png') no-repeat center 40px #333231;
+}
+li.city-reports a
+{
+	background: url('/assets/city-reports.png') no-repeat center 40px #333231;
+}
+.home-signed-in-username a:visited
+{
+	color: #ffffff;
+}

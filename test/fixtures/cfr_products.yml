@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  target: 1.5
+  city_id: 1
+  image_logo: MyString
+
+two:
+  name: MyString
+  description: MyString
+  target: 1.5
+  city_id: 1
+  image_logo: MyString

@@ -1,0 +1,50 @@
+
+<h1>Reports</h1>
+<%= form_tag('/eventsfellowreports/show', :method => 'get') do %>  
+  <p>  
+    <strong>From Date:</strong>
+  	    <span id="datepickerFrom"><%= text_field :from_date, :id => "datepicker_from", :class => "datepicker_from"%></span> 
+    
+    <strong>To Date:</strong>
+  	    <span id="datepickerTo"><%= text_field :to_date, :id => "datepicker_to", :class => "datepicker_to"%></span> 
+    
+    <%= submit_tag "Submit", :name => nil %>  
+  </p> 
+  <div class="report-buttons">
+    <div class="link-button clearfix report-header"><%= link_to "Export to Excel", :controller => :eventsfellowreports, :action => :report, :format => 'xls' %><%= label  :report_msg , @report_message, :id => "report-heading"%></div>
+    <%= render "layouts/status" %>
+  </div>
+<% end %>
+<table class="full-width">
+  <thead>
+    <tr>
+      <th><%= sortable MadConstants.date %></th>
+      <th><%= sortable MadConstants.event_code %></th>
+      <th><%= sortable MadConstants.event_name %></th>
+      <th><%= sortable MadConstants.ticket_amount %></th>
+      <th><%= sortable MadConstants.volunteer %></th>
+      <th><%= sortable MadConstants.donor_name %></th>
+      <th><%= sortable MadConstants.phone_no %></th>
+      <th><%= sortable MadConstants.receipt_status %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @eventdonations.each do |eventdonation| %>
+      <tr>
+        <td><%= eventdonation.created_at %></td>
+        <td class="number-column"><%= eventdonation.current_event.id %></td>
+        <td><%= eventdonation.current_event.event_name.to_s %></td>
+        <td class="number-column"><%= eventdonation.donation_amount %></td>
+        <td><%= eventdonation.fundraiser_user.first_name.to_s + ' ' + eventdonation.fundraiser_user.last_name.to_s%></td>
+        <td><%= eventdonation.donour_user.first_name.to_s + ' ' + eventdonation.donour_user.last_name.to_s %></td>
+        <td><%= eventdonation.donour_user.phone_no.to_s %></td>
+        <td><%= eventdonation.donation_status.to_s %></td>
+      </tr>
+    <% end %>
+    <tr class="pagination-row">
+        <td colspan="8"><div class="will-paginate"><%= will_paginate @eventdonations %></div></td>
+    </tr>
+  </tbody>
+</table>
+

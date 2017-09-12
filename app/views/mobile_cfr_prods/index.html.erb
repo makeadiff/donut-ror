@@ -1,0 +1,25 @@
+<h1>Listing mobile_cfr_prods</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mobile_cfr_prods.each do |mobile_cfr_prod| %>
+      <tr>
+        <td><%= link_to 'Show', mobile_cfr_prod %></td>
+        <td><%= link_to 'Edit', edit_mobile_cfr_prod_path(mobile_cfr_prod) %></td>
+        <td><%= link_to 'Destroy', mobile_cfr_prod, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mobile cfr prod', new_mobile_cfr_prod_path %>

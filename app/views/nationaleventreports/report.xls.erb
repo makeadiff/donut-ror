@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String"><%= MadConstants.date %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.event_code %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.event_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.ticket_amount %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.city %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.volunteer %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.donor_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.phone_no %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= MadConstants.receipt_status %></Data></Cell>
+      </Row>
+    <% @report_eventdonations.each do |eventdonation| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= eventdonation.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= eventdonation.current_event.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= eventdonation.current_event.event_name.to_s %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= eventdonation.current_event.ticket_price %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= eventdonation.fundraiser_user.city.name.to_s %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= eventdonation.fundraiser_user.first_name.to_s + ' ' + eventdonation.fundraiser_user.last_name.to_s %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= eventdonation.donour_user.first_name.to_s + ' ' + eventdonation.donour_user.last_name.to_s %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= eventdonation.donour_user.phone_no.to_s %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= eventdonation.donation_status.to_s %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+

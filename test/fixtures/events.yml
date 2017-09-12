@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  event_name: MyString
+  image_url: MyString
+  ticket_price: 1.5
+  description: MyString
+  date_range_from: 2013-08-05
+  date_range_to: 2013-08-05
+  venue_address: MyString
+  venue_address1: MyString
+  city_id: 1
+  state_id: 1
+
+two:
+  event_name: MyString
+  image_url: MyString
+  ticket_price: 1.5
+  description: MyString
+  date_range_from: 2013-08-05
+  date_range_to: 2013-08-05
+  venue_address: MyString
+  venue_address1: MyString
+  city_id: 1
+  state_id: 1

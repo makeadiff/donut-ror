@@ -1,0 +1,8 @@
+
+	<label for="volunteer_div" class="col3">Volunteer</label>
+	<div class="col6 multiple-select">
+		<%= collection_select(:event, :volunteer_ids, @volunteers,
+		          :id, :name,
+		        { :prompt =>'Select Volunteers', :selected => @selected_ids },
+		        {:multiple => true}) %>
+    </div>

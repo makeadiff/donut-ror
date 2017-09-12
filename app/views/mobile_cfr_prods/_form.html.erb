@@ -1,0 +1,17 @@
+<%= form_for(@mobile_cfr_prod) do |f| %>
+  <% if @mobile_cfr_prod.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mobile_cfr_prod.errors.count, "error") %> prohibited this mobile_cfr_prod from being saved:</h2>
+
+      <ul>
+      <% @mobile_cfr_prod.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

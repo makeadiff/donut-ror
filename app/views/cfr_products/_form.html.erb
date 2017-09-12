@@ -1,0 +1,66 @@
+
+<%= form_for(@cfr_product) do |f| %>
+  <% if @cfr_product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cfr_product.errors.count, "error") %> prohibited this cfr_product from being saved:</h2>
+
+      <ul>
+      <% @cfr_product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+      <div class="grid4">
+        <%= f.label :name, :class => 'col4' %>
+        <%= f.text_field :name, :class => 'col6',:maxlength => 50 %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="grid4">
+        <%= f.label :description, :class => 'col4' %>
+        <%= f.text_field :description, :class => 'col6',:maxlength => 200 %>
+      </div>
+  </div>
+  <div class="row">
+       <div class="grid4">
+        <%= f.label :target, :class => 'col4' %>
+        <%= f.text_field :target, :class => 'col6', :id => "target",:maxlength => 10 %>
+      </div>
+  </div>
+  <div class="row">
+    <div class="grid4">
+	    <%= f.label :start_date, :class => 'col4'%>
+	    <span id="datepickerFrom"><%= f.text_field :start_date, :id => 'datepicker_from', :class => 'col6'%>
+      </span>
+  	</div>
+  </div>
+  <div class="row">
+    <div class="grid4">
+	    <%= f.label :end_date, :class => 'col4' %>
+	    <span id="datepickerTo"><%= f.text_field :end_date, :id => 'datepicker_to', :class => 'col6'%>
+      </span>    
+  	</div>
+  </div>
+  <div class="row">
+    <div class="grid4"> 
+    	<%= f.label 'City', :class => 'col4' %>
+      <div class="col6 cfr-select-product">
+        <%= collection_select(:cfr_product, :city_id, City.all.order(:name), :id, :name, {:prompt => "Select A City"}) %>	
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid4">
+      <%= f.label :logo, :class => 'col4'%>
+      <%= f.file_field :image_logo, :class => 'col6' , :accept => 'image/*' %>
+    </div>
+  </div>
+
+  
+  <div class="actions">
+    <%= f.submit "Create New CFR Product", :id=> 'cfr-product-button'%>
+  </div>
+<% end %>
