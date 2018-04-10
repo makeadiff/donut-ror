@@ -1,4 +1,5 @@
 module EmailTemplateHelper
+  # To reset the dates to the correct one, replace all instance of '31/03/2018' to "' + Time.new.inspect + '"
   
   def confirmation_mail_template_for_event(donor_name, donor_email, don_amount, don_id, product_or_event_name)
     @email_text = '<html>
@@ -8,7 +9,7 @@ module EmailTemplateHelper
 <body>
 <table style="width: 960px;margin:0 auto;height: auto;border: 2px solid #f1f1f1;font-family:arial;font-size:20px;">
 <tr><td style="vertical-align: top;"><img style="float:left;margin: 0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-left.png'.to_s + '"/><img style="margin-left: -70px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-logo.png'.to_s + '"/><img style="float:right;margin:0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-right.png'.to_s + '"/></td></tr>
-<tr><td style="color:#cc2028;float:right;margin:10px 20px;">' + Time.new.inspect + '</td></tr>
+<tr><td style="color:#cc2028;float:right;margin:10px 20px;">31/03/2018</td></tr>
 <tr><td style="padding:10px 20px;"><strong>Dear ' + donor_name + ',</strong></td></tr>
 <tr><td style="padding:10px 20px;">Thanks a lot for your contribution of Rs.<strong style="color:#cc2028;">'+ don_amount.to_s + '/-</strong> through the event <strong style="color:#cc2028;">'+ product_or_event_name +'</strong>  towards Make A Difference. Your donation will directly go towards funding our projects for the children we are reaching out to, across 23 cities.</td></tr>
 <tr><td style="padding:10px 20px;">A detailed mail with event details will be sent soon.</td></tr>
@@ -28,7 +29,7 @@ module EmailTemplateHelper
 <body>
 <table style="width: 960px;margin:0 auto;height: auto;border: 2px solid #f1f1f1;font-family:arial;font-size:20px;">
 <tr><td style="vertical-align: top;"><img style="float:left;margin: 0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-left.png'.to_s + '"/><img style="margin-left: -70px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-logo.png'.to_s + '"/><img style="float:right;margin:0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-right.png'.to_s + '"/></td></tr>
-<tr><td style="color:#cc2028;float:right;margin:10px 20px;">' + Time.new.inspect + '</td></tr>
+<tr><td style="color:#cc2028;float:right;margin:10px 20px;">31/03/2018</td></tr>
 <tr><td style="padding:10px 20px;"><strong>Dear ' + donor_name + ',</strong></td></tr>
 <tr><td style="padding:10px 20px;">Thanks a lot for your contribution of Rs.<strong style="color:#cc2028;">'+ don_amount.to_s + '/-</strong> towards Make A Difference. Your sponsership will directly go towards funding our projects for the children we are reaching out to, across 23 cities.</td></tr>
 <tr><td style="padding:10px 20px;">A detailed mail with event details will be sent soon.</td></tr>
@@ -48,7 +49,7 @@ module EmailTemplateHelper
 <body>
 <table style="width: 960px;margin:0 auto;height: auto;border: 2px solid #f1f1f1;font-family:arial;font-size:20px;">
 <tr><td style="vertical-align: top;"><img style="float:left;margin: 0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-left.png'.to_s + '"/><img style="margin-left: -70px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-logo.png'.to_s + '"/><img style="float:right;margin:0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-right.png'.to_s + '"/></td></tr>
-<tr><td style="color:#cc2028;float:right;margin:10px 20px;">' + Time.new.inspect + '</td></tr>
+<tr><td style="color:#cc2028;float:right;margin:10px 20px;">31/03/2018</td></tr>
 <tr><td style="padding:10px 20px;"><strong>Dear ' + donor_name + ',</strong></td></tr>
 <tr><td style="padding:10px 20px;">Thanks a lot for your contribution of Rs.<strong style="color:#cc2028;">'+ don_amount.to_s + '/-</strong> towards Make A Difference. Your donation will directly go towards funding our projects for the children we are reaching out to, across 23 cities.</td></tr>
 <tr><td style="padding:10px 20px;">A detailed mail with event details will be sent soon.</td></tr>
@@ -81,7 +82,7 @@ module EmailTemplateHelper
 <body>
 <table style="width: 960px;margin:0 auto;height: auto;border: 2px solid #f1f1f1;font-family:arial;font-size:20px;">
 <tr><td style="vertical-align: top;"><img style="float:left;margin: 0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-left.png'.to_s + '"/><img style="margin-left: -70px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-logo.png'.to_s + '"/><img style="float:right;margin:0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-right.png'.to_s + '"/></td></tr>
-<tr><td style="color:#cc2028;float:right;margin:10px 20px;">' + Time.new.inspect + '</td></tr>
+<tr><td style="color:#cc2028;float:right;margin:10px 20px;">31/03/2018</td></tr>
 <tr><td style="padding:10px 20px;"><strong>Dear ' + donor_name + ',</strong></td></tr>
 <tr><td style="padding:10px 20px;">Please find attached the e-receipt containing the tax exemption certificate for the donation.</td></tr>
 <tr><td style="padding:10px 20px;">Once again thanks a lot for your contribution of Rs. <strong style="color:#cc2028;">'+ don_amount.to_s + '/- </strong>towards the cause of Make A Difference.</td></tr>
@@ -103,7 +104,7 @@ module EmailTemplateHelper
 <body>
 <table style="width: 960px;margin:0 auto;height: auto;border: 2px solid #f1f1f1;font-family:arial;font-size:20px;">
 <tr><td style="vertical-align: top;"><img style="float:left;margin: 0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-left.png'.to_s + '"/><img style="margin-left: -70px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-logo.png'.to_s + '"/><img style="float:right;margin:0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-right.png'.to_s + '"/></td></tr>
-<tr><td style="color:#cc2028;float:right;margin:10px 20px;"> ' + Time.new.inspect + ' </td></tr>
+<tr><td style="color:#cc2028;float:right;margin:10px 20px;"> 31/03/2018 </td></tr>
 <tr><td style="padding:10px 20px;"><strong>Dear ' + donor_name + ',</strong></td></tr>
 <tr><td style="padding:10px 20px;">Please find attached the e-receipt for the donation.</td></tr>
 <tr><td style="padding:10px 20px;">Once again thanks a lot for your contribution of Rs. <strong style="color:#cc2028;">' + don_amount.to_s + '/- </strong>towards the cause of Make A Difference.</td></tr>
@@ -123,7 +124,7 @@ module EmailTemplateHelper
 <body>
 <table style="width: 960px;margin:0 auto;height: auto;border: 2px solid #f1f1f1;font-family:arial;font-size:20px;">
 <tr><td style="vertical-align: top;"><img style="float:left;margin: 0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-left.png'.to_s + '"/><img style="margin-left: -70px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-logo.png'.to_s + '"/><img style="float:right;margin:0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-right.png'.to_s + '"/></td></tr>
-<tr><td style="color:#cc2028;float:right;margin:10px 20px;"> ' + Time.new.inspect + ' </td></tr>
+<tr><td style="color:#cc2028;float:right;margin:10px 20px;"> 31/03/2018 </td></tr>
 <tr><td style="padding:10px 20px;"><strong>Dear ' + donor_name + ',</strong></td></tr>
 <tr><td style="padding:10px 20px;">Thanks a lot for your contribution of Rs.<strong style="color:#cc2028;">' + don_amount.to_s + '/- </strong> towards Make A Difference.</td></tr>
 <tr><td style="padding:10px 20px;">This is not a donation receipt. But only an acknowledgement. We will be sending you the E-Receipt containing the tax exemption certificate for the donation within the next 45 day once the amount reaches us.</td></tr>
@@ -147,7 +148,7 @@ module EmailTemplateHelper
 <body>
 <table style="width: 960px;margin:0 auto;height: auto;border: 2px solid #f1f1f1;font-family:arial;font-size:20px;">
 <tr><td style="vertical-align: top;"><img style="float:left;margin: 0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-left.png'.to_s + '"/><img style="margin-left: -70px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-logo.png'.to_s + '"/><img style="float:right;margin:0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-right.png'.to_s + '"/></td></tr>
-<tr><td style="color:#cc2028;float:right;margin:10px 20px;"> ' + Time.new.inspect + ' </td></tr>
+<tr><td style="color:#cc2028;float:right;margin:10px 20px;"> 31/03/2018 </td></tr>
 <tr><td style="padding:10px 20px;"><strong>Dear ' + donor_name + ',</strong></td></tr>
 <tr><td style="padding:10px 20px;">Thanks a lot for your contribution of Rs.<strong style="color:#cc2028;">' + don_amount.to_s + '/-</strong> towards Make A Difference.</td></tr>
 <tr><td style="padding:10px 20px;">This is not a donation receipt. But only an acknowledgement. We will be sending you the e-receipt for the donation within the next 30 days once the amount reaches us.</td></tr>
@@ -171,7 +172,7 @@ module EmailTemplateHelper
 <body>
 <table style="width: 960px;margin:0 auto;height: auto;border: 2px solid #f1f1f1;font-family:arial;font-size:20px;">
 <tr><td style="vertical-align: top;"><img style="float:left;margin: 0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-left.png'.to_s + '"/><img style="margin-left: -70px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-logo.png'.to_s + '"/><img style="float:right;margin:0px;" src="' + MadConstants.app_http_root_path + '/assets/mad-letterhead-right.png'.to_s + '"/></td></tr>
-<tr><td style="color:#cc2028;float:right;margin:10px 20px;"> ' + Time.new.inspect + ' </td></tr>
+<tr><td style="color:#cc2028;float:right;margin:10px 20px;"> 31/03/2018 </td></tr>
 <tr><td style="padding:10px 20px;"><strong>Dear ' + donor_name + ',</strong></td></tr>
 <tr><td style="padding:10px 20px;">Thanks a lot for your contribution towards Make A Difference.</td></tr>
 <tr><td style="padding:10px 20px;">Please feel free to contact us on <a href="mailto:info@makeadiff.in">info@makeadiff.in</a> for any clarifications.</td></tr>
